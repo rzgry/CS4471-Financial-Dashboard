@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Statistic } from 'semantic-ui-react';
 import { authStore } from '../stores';
 import FluidSegment from '../components/FluidSegment';
 
@@ -33,6 +33,7 @@ class HomePage extends Component {
             <Grid.Column width={8}>
               <FluidSegment>
                 <h4>Stocks</h4>
+                <Statistic color="green" label="Money" value="10,000,000" />
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula
                   ex. Praesent volutpat scelerisque euismod. In nec augue at risus aliquam pharetra.
