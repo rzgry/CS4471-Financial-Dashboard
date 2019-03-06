@@ -5,8 +5,6 @@ import { observer } from 'mobx-react';
 import NavBar from '../components/NavBar';
 import HomePage from './HomePage';
 import LoginPage from './LoginPage';
-import PrivateRoute from '../components/PrivateRoute';
-import { authStore } from '../stores';
 
 @observer
 class App extends Component {
