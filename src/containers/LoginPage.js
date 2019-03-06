@@ -23,7 +23,7 @@ class LoginPage extends Component {
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
-    const { error } = this.state;
+    const { error, username } = this.state;
 
     if (authStore.isAuthenticated) return <Redirect to={from} />;
 
@@ -41,7 +41,8 @@ class LoginPage extends Component {
                   icon="user"
                   iconPosition="left"
                   placeholder="Username"
-                  onChange={e => this.setState({ username: e.target.value })}
+                  value={username}
+                  onChange={e => this.setState({ username: e.target.value.trim() })}
                 />
                 {/* <Form.Input
                   fluid
