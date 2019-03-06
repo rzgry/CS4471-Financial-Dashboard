@@ -1,9 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
+import NavBar from '../components/NavBar';
+import HomePage from './HomePage';
 
-class App extends Component {
-  render() {
-    return <div className="App">Hello World!</div>;
-  }
-}
+const App = () => (
+  <Router>
+    <div>
+      <NavBar />
+      <Container>
+        <Route path="/" exact component={HomePage} />
+        {/* <Route path="/about/" component={About} />
+        <Route path="/users/" component={Users} /> */}
+      </Container>
+    </div>
+  </Router>
+);
 
 export default App;
