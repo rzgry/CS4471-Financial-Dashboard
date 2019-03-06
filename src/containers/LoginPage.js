@@ -1,26 +1,66 @@
-class Login extends Component {
-  state = { redirectToReferrer: false };
+import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import { observer } from 'mobx-react';
+import {
+  Button, Form, Grid, Header, Message, Segment,
+} from 'semantic-ui-react';
+import { authStore } from '../stores';
 
-  login = () => {
-    fakeAuth.authenticate(() => {
-      this.setState({ redirectToReferrer: true });
-    });
+@observer
+class LoginPage extends Component {
+  state = { username: '' };
+
+  login = (e) => {
+    e.preventDefault();
+    const { username } = this.state;
+    if (username === '') {
+      this.setState({ error: 'Please enter a username' });
+      return;
+    }
+    this.setState({ error: '' });
+    authStore.login(username);
   };
 
   render() {
     const { from } = this.props.location.state || { from: { pathname: '/' } };
-    const { redirectToReferrer } = this.state;
+    const { error } = this.state;
 
-    if (redirectToReferrer) return <Redirect to={from} />;
+    if (authStore.isAuthenticated) return <Redirect to={from} />;
 
     return (
-      <div>
-        <p>
-You must log in to view the page at
-          {from.pathname}
-        </p>
-        <button onClick={this.login}>Log in</button>
+      <div className="login-form">
+        <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
+          <Grid.Column style={{ maxWidth: 450 }}>
+            <Header as="h2" color="teal" textAlign="center">
+              Log-in to your account
+            </Header>
+            <Form size="large">
+              <Segment stacked>
+                <Form.Input
+                  fluid
+                  icon="user"
+                  iconPosition="left"
+                  placeholder="Username"
+                  onChange={e => this.setState({ username: e.target.value })}
+                />
+                {/* <Form.Input
+                  fluid
+                  icon="lock"
+                  iconPosition="left"
+                  placeholder="Password"
+                  type="password"
+                /> */}
+                {error && <Message negative>{error}</Message>}
+                <Button color="teal" fluid size="large" onClick={this.login}>
+                  Login
+                </Button>
+              </Segment>
+            </Form>
+          </Grid.Column>
+        </Grid>
       </div>
     );
   }
 }
+
+export default LoginPage;
