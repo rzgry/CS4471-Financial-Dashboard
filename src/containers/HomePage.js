@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
+import { Grid } from 'semantic-ui-react';
 import { authStore } from '../stores';
+import FluidSegment from '../components/FluidSegment';
 
 const LoginWarning = () => (
   <div>
@@ -24,11 +26,56 @@ class HomePage extends Component {
 
     return (
       <div>
-        <p>
-          <span>Hello </span>
-          <strong>{authStore.username}</strong>
-          <span>! Welcome back to your dashboard</span>
-        </p>
+        <h3>{`Hello ${authStore.username}! Welcome back to your dashboard!`}</h3>
+
+        <Grid stackable>
+          <Grid.Row>
+            <Grid.Column width={8}>
+              <FluidSegment>
+                <h4>Stocks</h4>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula
+                  ex. Praesent volutpat scelerisque euismod. In nec augue at risus aliquam pharetra.
+                  Pellentesque accumsan porta leo, at dapibus sapien rutrum in. Aliquam erat
+                  volutpat.
+                </p>
+              </FluidSegment>
+            </Grid.Column>
+            <Grid.Column width={8}>
+              <FluidSegment>
+                <h4>News</h4>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula
+                  ex. Praesent volutpat scelerisque euismod. In nec augue at risus aliquam pharetra.
+                  Pellentesque accumsan porta leo, at dapibus sapien rutrum in. Aliquam erat
+                  volutpat. Ut suscipit augue ac metus interdum bibendum. Pellentesque nec
+                  consectetur lectus. Aliquam scelerisque turpis magna, sed semper nulla euismod
+                  eget. Maecenas in posuere leo, quis dictum nulla. Suspendisse tincidunt ipsum
+                  vitae venenatis aliquam. Aliquam erat volutpat. Phasellus iaculis hendrerit est,
+                  nec venenatis leo rutrum vel.
+                </p>
+              </FluidSegment>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row>
+            <Grid.Column width={8}>
+              <FluidSegment>
+                <h4>Currency</h4>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula
+                  ex. Praesent volutpat scelerisque euismod. In nec augue at risus aliquam pharetra.
+                  Pellentesque accumsan porta leo, at dapibus sapien rutrum in. Aliquam erat
+                  volutpat. Ut suscipit augue ac metus interdum bibendum. Pellentesque nec
+                  consectetur lectus. Aliquam scelerisque turpis magna, sed semper nulla euismod
+                  eget. Maecenas in posuere leo, quis dictum nulla. Suspendisse tincidunt ipsum
+                  vitae venenatis aliquam. Aliquam erat volutpat. Phasellus iaculis hendrerit est,
+                  nec venenatis leo rutrum vel.
+                </p>
+              </FluidSegment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid>
       </div>
     );
   }
