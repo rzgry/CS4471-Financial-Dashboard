@@ -1,5 +1,4 @@
 import React from 'react';
-import FluidSegment from '../components/FluidSegment';
 
 const CurrencyWidget = () => (
   <div>

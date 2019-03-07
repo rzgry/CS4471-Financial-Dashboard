@@ -1,34 +1,13 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { Link } from 'react-router-dom';
-import { Grid, Button, Icon } from 'semantic-ui-react';
-import { authStore, newsStore, subscriptionStore } from '../stores';
-import { FluidSegment } from '../components';
-import {
-  SUBSCRIPTION_STOCKS,
-  SUBSCRIPTION_CURRENCY,
-  SUBSCRIPTION_NEWS,
-  ALL_SERVICES,
-} from '../stores/SubscriptionsStore';
+import { Button, Icon } from 'semantic-ui-react';
+import { authStore, subscriptionStore } from '../stores';
+import { ALL_SERVICES } from '../stores/SubscriptionsStore';
 
 @observer
-class HomePage extends Component {
+class SubscriptionsPage extends Component {
   render() {
-    if (!authStore.isAuthenticated) {
-      return (
-        <div>
-          <p>
-            <span>Please</span>
-            {' '}
-            <Link to="/login">Login</Link>
-            {' '}
-            <span>to view your dashboard</span>
-          </p>
-        </div>
-      );
-    }
-
-    // get difference btn the two arrays
+    // get a list of services user is not subscribed to
     const servicesNotSubscribedTo = ALL_SERVICES.filter(
       x => !subscriptionStore.subscriptions.includes(x),
     );
@@ -88,4 +67,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default SubscriptionsPage;

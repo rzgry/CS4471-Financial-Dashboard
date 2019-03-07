@@ -1,8 +1,8 @@
 import React from 'react';
-import { Statistic, Feed } from 'semantic-ui-react';
+import { Feed } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 
-import { authStore, newsStore, subscriptionStore } from '../stores';
+import { newsStore } from '../stores';
 
 const ArticlesList = ({ articles }) => (
   <Feed>
@@ -23,7 +23,7 @@ const Article = ({ article }) => (
         <Feed.Extra text>
           {article.urlToImage && (
             <div>
-              <img style={{ height: '100px' }} src={article.urlToImage} />
+              <img style={{ height: '100px' }} alt={article.title} src={article.urlToImage} />
             </div>
           )}
           {article.description}

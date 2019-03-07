@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx';
+import { observable, action } from 'mobx';
 
 export const SUBSCRIPTION_STOCKS = 'Stocks';
 export const SUBSCRIPTION_CURRENCY = 'Currency';

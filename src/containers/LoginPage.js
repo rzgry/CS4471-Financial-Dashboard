@@ -22,6 +22,7 @@ class LoginPage extends Component {
   };
 
   render() {
+    // eslint-disable-next-line react/destructuring-assignment
     const { from } = this.props.location.state || { from: { pathname: '/' } };
     const { error, username } = this.state;
 
