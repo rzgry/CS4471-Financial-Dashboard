@@ -1,3 +1,6 @@
+# CS4471 Service Oriented Architecture client side application.
+Built using React.js and mobx
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
