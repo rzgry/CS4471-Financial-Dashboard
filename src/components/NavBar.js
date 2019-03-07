@@ -12,11 +12,11 @@ class NavBar extends Component {
         <Menu fixed="top" size="large">
           <Container>
             <Menu.Item as={Link} to="/">
-              Home
-            </Menu.Item>
-            {/* <Menu.Item as={Link} to="/dashboard">
               Dashboard
-            </Menu.Item> */}
+            </Menu.Item>
+            <Menu.Item as={Link} to="/manage">
+              Manage subscriptions
+            </Menu.Item>
             <Menu.Item position="right">
               {authStore.isAuthenticated ? (
                 <Button onClick={() => authStore.logout()}>Log out</Button>

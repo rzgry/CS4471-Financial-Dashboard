@@ -1,5 +1,8 @@
 import React from 'react';
-import { Feed, Image } from 'semantic-ui-react';
+import { Statistic, Feed } from 'semantic-ui-react';
+import { observer } from 'mobx-react';
+
+import { authStore, newsStore, subscriptionStore } from '../stores';
 
 const ArticlesList = ({ articles }) => (
   <Feed>
@@ -33,4 +36,17 @@ const Article = ({ article }) => (
   </div>
 );
 
-export default ArticlesList;
+@observer
+class NewsWidget extends React.Component {
+  render() {
+    const articles = newsStore.newsArticles;
+    return (
+      <div>
+        <h4>News</h4>
+        <ArticlesList articles={articles} />
+      </div>
+    );
+  }
+}
+
+export default NewsWidget;

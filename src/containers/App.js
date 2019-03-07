@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import NavBar from '../components/NavBar';
 import HomePage from './HomePage';
 import LoginPage from './LoginPage';
+import SubscriptionsPage from './SubscriptionsPage';
 
 @observer
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
           <Container>
             <Route path="/" exact component={HomePage} />
             <Route path="/login" exact component={LoginPage} />
+            <Route path="/manage" exact component={SubscriptionsPage} />
           </Container>
         </div>
       </Router>

@@ -1,22 +1,24 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
-import { Grid, Statistic } from 'semantic-ui-react';
-import { authStore, newsStore } from '../stores';
-import FluidSegment from '../components/FluidSegment';
-import ArticlesList from '../components/Articles';
+import { Grid, Button, Icon } from 'semantic-ui-react';
+import { authStore, newsStore, subscriptionStore } from '../stores';
+import { FluidSegment } from '../components';
+import {
+  SUBSCRIPTION_STOCKS,
+  SUBSCRIPTION_CURRENCY,
+  SUBSCRIPTION_NEWS,
+} from '../stores/SubscriptionsStore';
 
-const LoginWarning = () => (
-  <div>
-    <p>
-      <span>Please</span>
-      {' '}
-      <Link to="/login">Login</Link>
-      {' '}
-      <span>to view your dashboard</span>
-    </p>
-  </div>
-);
+import StocksWidget from './StocksWidget';
+import NewsWidget from './NewsWidget';
+import CurrencyWidget from './CurrencyWidget';
+
+const SUBSCRIPTION_WIDGETS = {
+  [SUBSCRIPTION_STOCKS]: () => <StocksWidget />,
+  [SUBSCRIPTION_CURRENCY]: () => <CurrencyWidget />,
+  [SUBSCRIPTION_NEWS]: () => <NewsWidget />,
+};
 
 @observer
 class HomePage extends Component {
@@ -27,7 +29,17 @@ class HomePage extends Component {
 
   render() {
     if (!authStore.isAuthenticated) {
-      return <LoginWarning />;
+      return (
+        <div>
+          <p>
+            <span>Please</span>
+            {' '}
+            <Link to="/login">Login</Link>
+            {' '}
+            <span>to view your dashboard</span>
+          </p>
+        </div>
+      );
     }
 
     return (
@@ -37,45 +49,29 @@ class HomePage extends Component {
           <span style={{ color: '#00b5ad' }}>{authStore.username}</span>
           <span>! Welcome back to your dashboard!</span>
         </h3>
-
+        {subscriptionStore.subscriptions.length === 0 && (
+          <p>
+            You do not have any subscriptions. Please manage your subscriptions on the
+            {' '}
+            <Link to="/manage">manage page</Link>
+          </p>
+        )}
         <Grid stackable>
-          <Grid.Row>
+          {subscriptionStore.subscriptions.map(subscription => (
             <Grid.Column width={8}>
               <FluidSegment>
-                <h4>Stocks</h4>
-                <Statistic color="green" label="Money" value="10,000,000" />
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula
-                  ex. Praesent volutpat scelerisque euismod. In nec augue at risus aliquam pharetra.
-                  Pellentesque accumsan porta leo, at dapibus sapien rutrum in. Aliquam erat
-                  volutpat.
-                </p>
+                <Button
+                  size="tiny"
+                  color="red"
+                  onClick={() => subscriptionStore.unsubscribe(subscription)}
+                >
+                  <Icon name="close" />
+                  Unsubscribe
+                </Button>
+                {SUBSCRIPTION_WIDGETS[subscription]()}
               </FluidSegment>
             </Grid.Column>
-            <Grid.Column width={8}>
-              <FluidSegment>
-                <h4>Currency</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula
-                  ex. Praesent volutpat scelerisque euismod. In nec augue at risus aliquam pharetra.
-                  Pellentesque accumsan porta leo, at dapibus sapien rutrum in. Aliquam erat
-                  volutpat. Ut suscipit augue ac metus interdum bibendum. Pellentesque nec
-                  consectetur lectus. Aliquam scelerisque turpis magna, sed semper nulla euismod
-                  eget. Maecenas in posuere leo, quis dictum nulla. Suspendisse tincidunt ipsum
-                  vitae venenatis aliquam. Aliquam erat volutpat. Phasellus iaculis hendrerit est,
-                  nec venenatis leo rutrum vel.
-                </p>
-              </FluidSegment>
-            </Grid.Column>
-          </Grid.Row>
-          <Grid.Row>
-            <Grid.Column width={8}>
-              <FluidSegment>
-                <h4>News</h4>
-                <ArticlesList articles={newsStore.newsArticles} />
-              </FluidSegment>
-            </Grid.Column>
-          </Grid.Row>
+          ))}
         </Grid>
       </div>
     );

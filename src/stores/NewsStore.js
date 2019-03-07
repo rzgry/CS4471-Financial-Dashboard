@@ -102,42 +102,6 @@ export default class NewsStore {
             content:
               'The U.S. trade deficit widened in 2018 to a 10-year high of $621 billion, bucking President Donald Trump’s pledges to reduce it, as tax cuts boosted domestic demand for imports while the strong dollar and retaliatory tariffs weighed on exports.\r\nThe annual de… [+4387 chars]',
           },
-          {
-            source: { id: 'bloomberg', name: 'Bloomberg' },
-            author: null,
-            title: 'Free on Bail, Carlos Ghosn Girds for the Legal Fight of His Life',
-            description: null,
-            url:
-              'https://www.bloomberg.com/news/articles/2019-03-06/free-on-bail-carlos-ghosn-girds-for-the-legal-fight-of-his-life',
-            urlToImage: null,
-            publishedAt: '2019-03-06T13:15:00+00:00',
-            content: "To continue, please click the box below to let us know you're not a robot.",
-          },
-          {
-            source: { id: 'bloomberg', name: 'Bloomberg' },
-            author: 'Anna Edgerton',
-            title: 'Anti-Semitism Rebuke Threatens Rift Among House Democrats',
-            description:
-              'A decision by House Democratic leaders to hold a vote on an anti-Semitism resolution that indirectly rebukes one of their own members, Ilhan Omar, has drawn the ire of her allies, threatening to open a generational rift in the party.',
-            url:
-              'https://www.bloomberg.com/news/articles/2019-03-06/anti-semitism-rebuke-threatens-rift-among-house-democrats',
-            urlToImage:
-              'https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iSFstYvcYbww/v0/1200x900.jpg',
-            publishedAt: '2019-03-06T09:00:00+00:00',
-            content:
-              'A decision by House Democratic leaders to hold a vote on an anti-Semitism resolution that indirectly rebukes one of their own members, Ilhan Omar, has drawn the ire of her allies, threatening to open a generational rift in the party.\r\nThe Minnesota freshman’s… [+5254 chars]',
-          },
-          {
-            source: { id: 'bloomberg', name: 'Bloomberg' },
-            author: null,
-            title: 'Trump Pushes China Trade Deal to Boost Markets as 2020 Heats Up',
-            description: null,
-            url:
-              'https://www.bloomberg.com/news/articles/2019-03-06/trump-is-said-to-push-for-china-deal-with-market-gains-in-mind',
-            urlToImage: null,
-            publishedAt: '2019-03-06T09:00:00+00:00',
-            content: "To continue, please click the box below to let us know you're not a robot.",
-          },
         ],
       }.articles;
     } catch (e) {
