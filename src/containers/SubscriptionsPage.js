@@ -8,9 +8,6 @@ import { ALL_SERVICES } from '../stores/SubscriptionsStore';
 class SubscriptionsPage extends Component {
   render() {
     // get a list of services user is not subscribed to
-    const servicesNotSubscribedTo = ALL_SERVICES.filter(
-      x => !subscriptionStore.subscriptions.includes(x),
-    );
 
     return (
       <div>
@@ -39,12 +36,12 @@ class SubscriptionsPage extends Component {
           ))}
         </ul>
         <h4>Avaliable services</h4>
-        {servicesNotSubscribedTo.length === 0 && (
+        {subscriptionStore.servicesNotSubscribedTo.length === 0 && (
           <p>You have subscribed to all avaliable services</p>
         )}
-        {servicesNotSubscribedTo !== 0 && (
+        {subscriptionStore.servicesNotSubscribedTo !== 0 && (
           <ul>
-            {servicesNotSubscribedTo.map(service => (
+            {subscriptionStore.servicesNotSubscribedTo.map(service => (
               <li>
                 <div style={{ display: 'flex', marginTop: '1em', marginBlock: '1em' }}>
                   <p style={{ marginRight: '1em' }}>{service}</p>
