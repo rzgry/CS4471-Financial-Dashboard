@@ -1,16 +1,16 @@
 import React from 'react';
-import { Statistic } from 'semantic-ui-react';
+import { observer } from 'mobx-react';
+import { stocksStore } from '../stores';
 
-const StocksWidget = () => (
-  <div>
-    <h4>Stocks</h4>
-    <Statistic color="green" label="Money" value="10,000,000" />
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula ex. Praesent
-      volutpat scelerisque euismod. In nec augue at risus aliquam pharetra. Pellentesque accumsan
-      porta leo, at dapibus sapien rutrum in. Aliquam erat volutpat.
-    </p>
-  </div>
-);
+@observer
+class StocksWidget extends React.Component {
+  render() {
+    return (
+      <div>
+        <h4>Stocks</h4>
+      </div>
+    );
+  }
+}
 
 export default StocksWidget;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
 import { Grid, Button, Icon } from 'semantic-ui-react';
-import { authStore, newsStore, subscriptionStore } from '../stores';
+import { userStore, newsStore, subscriptionStore } from '../stores';
 import { FluidSegment } from '../components';
 import {
   SUBSCRIPTION_STOCKS,
@@ -14,12 +14,6 @@ import StocksWidget from './StocksWidget';
 import NewsWidget from './NewsWidget';
 import CurrencyWidget from './CurrencyWidget';
 
-const SUBSCRIPTION_WIDGETS = {
-  [SUBSCRIPTION_STOCKS]: () => <StocksWidget />,
-  [SUBSCRIPTION_CURRENCY]: () => <CurrencyWidget />,
-  [SUBSCRIPTION_NEWS]: () => <NewsWidget />,
-};
-
 @observer
 class HomePage extends Component {
   constructor(props) {
@@ -28,15 +22,15 @@ class HomePage extends Component {
   }
 
   render() {
-    if (!authStore.isAuthenticated) {
+    if (!userStore.isAuthenticated) {
       return (
         <div>
           <p>
-            <span>Please</span>
-            {' '}
+            <span>Please </span>
             <Link to="/login">Login</Link>
-            {' '}
-            <span>to view your dashboard</span>
+            <span> or </span>
+            <Link to="/signup">Sign up</Link>
+            <span> to view your dashboard</span>
           </p>
         </div>
       );
@@ -46,32 +40,58 @@ class HomePage extends Component {
       <div>
         <h3>
           <span>Hello </span>
-          <span style={{ color: '#00b5ad' }}>{authStore.username}</span>
+          <span style={{ color: '#00b5ad' }}>{userStore.user.email}</span>
           <span>! Welcome back to your dashboard!</span>
         </h3>
-        {subscriptionStore.subscriptions.length === 0 && (
-          <p>
-            You do not have any subscriptions. Please manage your subscriptions on the
-            {' '}
-            <Link to="/manage">manage page</Link>
-          </p>
-        )}
         <Grid stackable>
-          {subscriptionStore.subscriptions.map(subscription => (
-            <Grid.Column width={8}>
-              <FluidSegment>
-                <Button
-                  size="tiny"
-                  color="red"
-                  onClick={() => subscriptionStore.unsubscribe(subscription)}
-                >
-                  <Icon name="close" />
-                  Unsubscribe
-                </Button>
-                {SUBSCRIPTION_WIDGETS[subscription]()}
-              </FluidSegment>
-            </Grid.Column>
-          ))}
+          {userStore.user.subscriptions[SUBSCRIPTION_NEWS]
+            && subscriptionStore.services[SUBSCRIPTION_NEWS] && (
+              <Grid.Column width={8}>
+                <FluidSegment>
+                  <Button
+                    size="tiny"
+                    color="red"
+                    onClick={() => userStore.unsubscribe(SUBSCRIPTION_NEWS)}
+                  >
+                    <Icon name="close" />
+                    Unsubscribe
+                  </Button>
+                  <NewsWidget />
+                </FluidSegment>
+              </Grid.Column>
+          )}
+          {userStore.user.subscriptions[SUBSCRIPTION_CURRENCY]
+            && subscriptionStore.services[SUBSCRIPTION_CURRENCY] && (
+              <Grid.Column width={8}>
+                <FluidSegment>
+                  <Button
+                    size="tiny"
+                    color="red"
+                    onClick={() => userStore.unsubscribe(SUBSCRIPTION_CURRENCY)}
+                  >
+                    <Icon name="close" />
+                    Unsubscribe
+                  </Button>
+                  <CurrencyWidget />
+                </FluidSegment>
+              </Grid.Column>
+          )}
+          {userStore.user.subscriptions[SUBSCRIPTION_STOCKS]
+            && subscriptionStore.services[SUBSCRIPTION_STOCKS] && (
+              <Grid.Column width={8}>
+                <FluidSegment>
+                  <Button
+                    size="tiny"
+                    color="red"
+                    onClick={() => userStore.unsubscribe(SUBSCRIPTION_STOCKS)}
+                  >
+                    <Icon name="close" />
+                    Unsubscribe
+                  </Button>
+                  <StocksWidget />
+                </FluidSegment>
+              </Grid.Column>
+          )}
         </Grid>
       </div>
     );

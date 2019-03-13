@@ -1,7 +1,9 @@
-import AuthStore from './AuthStore';
+import UserStore from './UserStore';
 import NewsStore from './NewsStore';
 import SubscriptionStore from './SubscriptionsStore';
+import StocksStore from './StocksStore';
 
-export const authStore = new AuthStore();
+export const userStore = new UserStore();
+export const stocksStore = new StocksStore();
 export const newsStore = new NewsStore();
 export const subscriptionStore = new SubscriptionStore();

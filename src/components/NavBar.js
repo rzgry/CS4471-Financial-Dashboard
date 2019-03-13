@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Button, Container, Menu } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { observer } from 'mobx-react';
-import { authStore } from '../stores';
+import { userStore } from '../stores';
 
 @observer
 class NavBar extends Component {
@@ -18,9 +18,15 @@ class NavBar extends Component {
               Manage subscriptions
             </Menu.Item>
             <Menu.Item position="right">
-              {authStore.isAuthenticated ? (
-                <Button onClick={() => authStore.logout()}>Log out</Button>
-              ) : (
+              {userStore.isAuthenticated && (
+                <Button onClick={() => userStore.logout()}>Log out</Button>
+              )}
+              {!userStore.isAuthenticated && (
+                <Button color="blue" as={Link} to="/signup" style={{ marginRight: '0.5em' }}>
+                  Sign up
+                </Button>
+              )}
+              {!userStore.isAuthenticated && (
                 <Button color="teal" as={Link} to="/login">
                   Log in
                 </Button>

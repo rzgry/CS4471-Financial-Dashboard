@@ -7,10 +7,10 @@ import {
 import { userStore } from '../stores';
 
 @observer
-class LoginPage extends Component {
+class SignupPage extends Component {
   state = { email: '', password: '' };
 
-  login = (e) => {
+  signup = (e) => {
     e.preventDefault();
     const { email, password } = this.state;
 
@@ -23,7 +23,7 @@ class LoginPage extends Component {
       return;
     }
     this.setState({ error: '' });
-    userStore.login(email, password);
+    userStore.signup(email, password);
   };
 
   render() {
@@ -34,11 +34,11 @@ class LoginPage extends Component {
     if (userStore.isAuthenticated) return <Redirect to={from} />;
 
     return (
-      <div className="login-form">
+      <div className="signup-form">
         <Grid textAlign="center" style={{ height: '100%' }} verticalAlign="middle">
           <Grid.Column style={{ maxWidth: 450 }}>
-            <Header as="h2" color="teal" textAlign="center">
-              Log in
+            <Header as="h2" color="blue" textAlign="center">
+              Sign up
             </Header>
             <Form size="large">
               <Segment stacked>
@@ -61,15 +61,15 @@ class LoginPage extends Component {
                 />
                 {error && <Message negative>{error}</Message>}
                 {userStore.error && <Message negative>{userStore.error}</Message>}
-                <Button color="teal" fluid size="large" onClick={this.login}>
-                  Log in
+                <Button color="blue" fluid size="large" onClick={this.signup}>
+                  Sign up
                 </Button>
               </Segment>
             </Form>
             <Message>
-              New to us?
+              Already have an account?
               {' '}
-              <Link to="/signup">Sign Up</Link>
+              <Link to="/login">Log In</Link>
             </Message>
           </Grid.Column>
         </Grid>
@@ -78,4 +78,4 @@ class LoginPage extends Component {
   }
 }
 
-export default LoginPage;
+export default SignupPage;

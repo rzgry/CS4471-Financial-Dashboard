@@ -1,33 +1,46 @@
-import { observable, action, computed } from 'mobx';
+import {
+  observable, action, computed, runInAction,
+} from 'mobx';
+import { db } from '../helpers/firebase';
 
-export const SUBSCRIPTION_STOCKS = 'Stocks';
-export const SUBSCRIPTION_CURRENCY = 'Currency';
-export const SUBSCRIPTION_NEWS = 'News';
+export const SUBSCRIPTION_STOCKS = 'stocks';
+export const SUBSCRIPTION_CURRENCY = 'currency';
+export const SUBSCRIPTION_NEWS = 'news';
 
-export default class AuthStore {
+export default class SubscriptionStore {
+  constructor() {
+    db.collection('services')
+      .doc('available_services')
+      .onSnapshot((doc) => {
+        runInAction(() => {
+          this.services = doc.data();
+        });
+      });
+  }
+
   @observable
-  subscriptions = [];
+  subscriptions = {
+    stocks: false,
+    currency: false,
+    news: false,
+  };
 
   @observable
-  avaliableServices = [SUBSCRIPTION_STOCKS, SUBSCRIPTION_CURRENCY, SUBSCRIPTION_NEWS];
+  services = {
+    stocks: false,
+    currency: false,
+    news: false,
+  };
 
-  @computed
-  get servicesNotSubscribedTo() {
-    return this.avaliableServices.filter(x => !this.subscriptions.includes(x));
+  @computed get stocksWidgetVisable() {
+    return this.subscriptions.stocks === true && this.servicesAvaliable.stocks === true;
   }
 
   @action subscribe(service) {
-    if (!this.subscriptions.includes(service)) {
-      this.subscriptions.push(service);
-    }
+    this.subscriptions[service] = true;
   }
 
   @action unsubscribe(service) {
-    if (this.subscriptions.includes(service)) {
-      const index = this.subscriptions.indexOf(service);
-      if (index > -1) {
-        this.subscriptions.splice(index, 1);
-      }
-    }
+    this.subscriptions[service] = false;
   }
 }

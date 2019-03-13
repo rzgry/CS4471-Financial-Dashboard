@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 import HomePage from './HomePage';
+import SignupPage from './SignupPage';
 import LoginPage from './LoginPage';
 import SubscriptionsPage from './SubscriptionsPage';
 import { PrivateRoute, NavBar } from '../components';
-import { authStore } from '../stores';
+import { userStore } from '../stores';
 
 @observer
 class App extends Component {
@@ -17,9 +18,10 @@ class App extends Component {
           <NavBar />
           <Container>
             <Route path="/" exact component={HomePage} />
+            <Route path="/signup" exact component={SignupPage} />
             <Route path="/login" exact component={LoginPage} />
             <PrivateRoute
-              isAuthenticated={authStore.isAuthenticated}
+              isAuthenticated={userStore.isAuthenticated}
               path="/manage"
               exact
               component={SubscriptionsPage}
