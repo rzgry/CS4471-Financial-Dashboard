@@ -8,6 +8,10 @@ class StocksWidget extends React.Component {
     return (
       <div>
         <h4>Stocks</h4>
+        <div>
+          <p>{stocksStore.stocks['Global Quote']['01. symbol']}</p>
+          <p>{stocksStore.stocks['Global Quote']['05. price']}</p>
+        </div>
       </div>
     );
   }

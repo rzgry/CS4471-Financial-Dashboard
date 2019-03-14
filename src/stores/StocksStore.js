@@ -3,16 +3,17 @@ import { db } from '../helpers/firebase';
 
 export default class NewsStore {
   constructor() {
-    // db.collection('services')
-    //   .doc('stocks')
-    //   .onSnapshot((doc) => {
-    //     runInAction(() => {
-    //       this.stocks = doc.data().stock_prices;
-    //     });
-    //   });
+    db.collection('services')
+      .doc('stocks')
+      .onSnapshot((doc) => {
+        runInAction(() => {
+          // console.log(doc.data());
+          this.stocks = doc.data();
+        });
+      });
   }
 
-  @observable stocks = [];
+  @observable stocks = {};
 
   @observable error = '';
 }
