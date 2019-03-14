@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { Container } from 'semantic-ui-react';
+import { Container, Dimmer, Loader } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 import HomePage from './HomePage';
 import SignupPage from './SignupPage';
@@ -15,18 +15,27 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <NavBar />
-          <Container>
-            <Route path="/" exact component={HomePage} />
-            <Route path="/signup" exact component={SignupPage} />
-            <Route path="/login" exact component={LoginPage} />
-            <PrivateRoute
-              isAuthenticated={userStore.isAuthenticated}
-              path="/manage"
-              exact
-              component={SubscriptionsPage}
-            />
-          </Container>
+          {!userStore.authFinishedLoading && (
+            <Dimmer active>
+              <Loader />
+            </Dimmer>
+          )}
+          {userStore.authFinishedLoading && (
+            <div>
+              <NavBar />
+              <Container>
+                <Route path="/" exact component={HomePage} />
+                <Route path="/signup" exact component={SignupPage} />
+                <Route path="/login" exact component={LoginPage} />
+                <PrivateRoute
+                  isAuthenticated={userStore.isAuthenticated}
+                  path="/manage"
+                  exact
+                  component={SubscriptionsPage}
+                />
+              </Container>
+            </div>
+          )}
         </div>
       </Router>
     );

@@ -13,15 +13,22 @@ export default class UserStore {
           .onSnapshot((doc) => {
             if (doc.data().uid === firebase.auth().currentUser.uid) {
               runInAction(() => {
+                this.authFinishedLoading = true;
                 this.user = doc.data();
               });
+            } else {
+              this.authFinishedLoading = true;
             }
           });
       } else {
+        this.authFinishedLoading = true;
         this.user = {};
       }
     });
   }
+
+  @observable
+  authFinishedLoading = false;
 
   @observable
   user = {};
