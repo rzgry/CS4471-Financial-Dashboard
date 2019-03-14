@@ -2,23 +2,20 @@ import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Button, Icon } from 'semantic-ui-react';
 import { userStore, subscriptionStore } from '../stores';
-import { ALL_SERVICES } from '../stores/SubscriptionsStore';
 
 @observer
 class SubscriptionsPage extends Component {
   render() {
-    // get a list of services user is not subscribed to
-
     const services = Object.entries(subscriptionStore.services);
     const avaliableServices = services
-      .filter(([name, avaliable]) => avaliable)
+      .filter(([name, avaliable]) => avaliable) // eslint-disable-line no-unused-vars
       .map(([name]) => name);
 
     return (
       <div>
         <h3>
           <span>Hello </span>
-          <span style={{ color: '#00b5ad' }}>{userStore.email}</span>
+          <span style={{ color: '#00b5ad' }}>{userStore.user.email}</span>
           <span>! Manage your subscriptions!</span>
         </h3>
         <ul>
