@@ -24,6 +24,11 @@ class StocksWidget extends React.Component {
             price={stocksStore.stocks['Global Quote']['05. price']}
             percentChange={stocksStore.stocks['Global Quote']['10. change percent']}
           />
+          <div style={{ margin: '1em', marginBottom: '2em' }}>
+            <p style={{ float: 'right', color: 'gray' }}>
+              {`Last updated: ${new Date(stocksStore.stocks.timestamp).toLocaleString()}`}
+            </p>
+          </div>
         </div>
       </div>
     );
