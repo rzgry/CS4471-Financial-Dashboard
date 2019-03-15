@@ -1,5 +1,5 @@
 import {
-  toJS, observable, action, computed, runInAction,
+  toJS, observable, action, computed,
 } from 'mobx';
 import firebase, { db } from '../helpers/firebase';
 
@@ -7,18 +7,13 @@ export default class UserStore {
   constructor() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        // User is signed in.;
         db.collection('users')
           .doc(user.uid)
           .onSnapshot((doc) => {
             if (doc.data().uid === firebase.auth().currentUser.uid) {
-              runInAction(() => {
-                this.authFinishedLoading = true;
-                this.user = doc.data();
-              });
-            } else {
-              this.authFinishedLoading = true;
+              this.user = doc.data();
             }
+            this.authFinishedLoading = true;
           });
       } else {
         this.authFinishedLoading = true;

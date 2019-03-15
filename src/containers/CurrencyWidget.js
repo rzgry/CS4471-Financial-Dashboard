@@ -1,8 +1,16 @@
 import React from 'react';
+import { Button, Icon } from 'semantic-ui-react';
 
-const CurrencyWidget = () => (
+const CurrencyWidget = ({ onUnsubscribe }) => (
   <div>
-    <h4>Currency</h4>
+    <h3>
+      Currency
+      {' '}
+      <Button onClick={onUnsubscribe} style={{ float: 'right' }} size="tiny">
+        <Icon name="close" />
+        Unsubscribe
+      </Button>
+    </h3>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula ex. Praesent
       volutpat scelerisque euismod. In nec augue at risus aliquam pharetra. Pellentesque accumsan

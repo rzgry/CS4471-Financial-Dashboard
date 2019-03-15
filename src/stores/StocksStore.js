@@ -1,4 +1,4 @@
-import { observable, runInAction } from 'mobx';
+import { observable } from 'mobx';
 import { db } from '../helpers/firebase';
 
 export default class NewsStore {
@@ -6,10 +6,7 @@ export default class NewsStore {
     db.collection('services')
       .doc('stocks')
       .onSnapshot((doc) => {
-        runInAction(() => {
-          // console.log(doc.data());
-          this.stocks = doc.data();
-        });
+        this.stocks = doc.data();
       });
   }
 

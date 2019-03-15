@@ -48,15 +48,7 @@ class HomePage extends Component {
             && subscriptionStore.services[SUBSCRIPTION_NEWS] && (
               <Grid.Column width={8}>
                 <FluidSegment>
-                  <Button
-                    size="tiny"
-                    color="red"
-                    onClick={() => userStore.unsubscribe(SUBSCRIPTION_NEWS)}
-                  >
-                    <Icon name="close" />
-                    Unsubscribe
-                  </Button>
-                  <NewsWidget />
+                  <NewsWidget onUnsubscribe={() => userStore.unsubscribe(SUBSCRIPTION_NEWS)} />
                 </FluidSegment>
               </Grid.Column>
           )}
@@ -64,15 +56,9 @@ class HomePage extends Component {
             && subscriptionStore.services[SUBSCRIPTION_CURRENCY] && (
               <Grid.Column width={8}>
                 <FluidSegment>
-                  <Button
-                    size="tiny"
-                    color="red"
-                    onClick={() => userStore.unsubscribe(SUBSCRIPTION_CURRENCY)}
-                  >
-                    <Icon name="close" />
-                    Unsubscribe
-                  </Button>
-                  <CurrencyWidget />
+                  <CurrencyWidget
+                    onUnsubscribe={() => userStore.unsubscribe(SUBSCRIPTION_CURRENCY)}
+                  />
                 </FluidSegment>
               </Grid.Column>
           )}
@@ -80,15 +66,7 @@ class HomePage extends Component {
             && subscriptionStore.services[SUBSCRIPTION_STOCKS] && (
               <Grid.Column width={8}>
                 <FluidSegment>
-                  <Button
-                    size="tiny"
-                    color="red"
-                    onClick={() => userStore.unsubscribe(SUBSCRIPTION_STOCKS)}
-                  >
-                    <Icon name="close" />
-                    Unsubscribe
-                  </Button>
-                  <StocksWidget />
+                  <StocksWidget onUnsubscribe={() => userStore.unsubscribe(SUBSCRIPTION_STOCKS)} />
                 </FluidSegment>
               </Grid.Column>
           )}
