@@ -6,22 +6,11 @@ export default class NewsStore {
   @observable error = '';
 
   @action
-  async fetchNews() {
+  fetchNews() {
     try {
       // TODO Fetch news data from API
       this.newsArticles = {
         articles: [
-          {
-            source: { id: 'bloomberg', name: 'Bloomberg' },
-            author: null,
-            title: 'The Job Market Is Finally Fixed',
-            description: null,
-            url:
-              'https://www.bloomberg.com/view/articles/2019-03-06/full-employment-seems-finally-here',
-            urlToImage: null,
-            publishedAt: '2019-03-06T21:32:00+00:00',
-            content: "To continue, please click the box below to let us know you're not a robot.",
-          },
           {
             source: { id: 'bloomberg', name: 'Bloomberg' },
             author: 'Benjamin Bain',
@@ -35,17 +24,6 @@ export default class NewsStore {
             publishedAt: '2019-03-06T19:58:00+00:00',
             content:
               'Buybacks faced fresh political furor Wednesday with Democratic Senator Chris Van Hollen threatening to propose legislation that could make it more difficult for executives to sell shares after corporations announce they are repurchasing stock.\r\nKey Insights\r\n… [+1202 chars]',
-          },
-          {
-            source: { id: 'bloomberg', name: 'Bloomberg' },
-            author: null,
-            title: 'Debt-Free College Bill Resurfaces as Democrats Shape 2020 Runs',
-            description: null,
-            url:
-              'https://www.bloomberg.com/news/articles/2019-03-06/debt-free-college-bill-resurfaces-as-democrats-shape-2020-runs',
-            urlToImage: null,
-            publishedAt: '2019-03-06T18:30:00+00:00',
-            content: "To continue, please click the box below to let us know you're not a robot.",
           },
           {
             source: { id: 'bloomberg', name: 'Bloomberg' },

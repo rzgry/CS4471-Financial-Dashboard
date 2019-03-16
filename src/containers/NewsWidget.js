@@ -1,39 +1,27 @@
 import React from 'react';
-import { Feed, Button, Icon } from 'semantic-ui-react';
+import { Button, Icon, Item } from 'semantic-ui-react';
 import { observer } from 'mobx-react';
 
 import { newsStore } from '../stores';
 
 const ArticlesList = ({ articles }) => (
-  <Feed>
+  <Item.Group>
     {articles.map(article => (
       <Article article={article} />
     ))}
-  </Feed>
+  </Item.Group>
 );
 
 const Article = ({ article }) => (
-  <div style={{ marginBottom: '2em' }}>
-    <Feed.Event>
-      <Feed.Content>
-        <Feed.Summary>
-          <a href={article.url}>{article.title}</a>
-          {article.publishedAt && <Feed.Date>{article.publishedAt.split('T')[0]}</Feed.Date>}
-        </Feed.Summary>
-        <Feed.Extra text>
-          {article.urlToImage && (
-            <div>
-              <img style={{ height: '100px' }} alt={article.title} src={article.urlToImage} />
-            </div>
-          )}
-          {article.description}
-          {article.description && <br />}
-          {article.author && `Author: ${article.author}, `}
-          {article.source.name}
-        </Feed.Extra>
-      </Feed.Content>
-    </Feed.Event>
-  </div>
+  <Item>
+    {article.urlToImage && <Item.Image size="tiny" src={article.urlToImage} />}
+
+    <Item.Content>
+      <Item.Header as="a">{article.title}</Item.Header>
+      <Item.Meta>{article.description}</Item.Meta>
+      <Item.Extra>{`${article.author} |  ${article.publishedAt.split('T')[0]}`}</Item.Extra>
+    </Item.Content>
+  </Item>
 );
 
 @observer
