@@ -1,26 +1,66 @@
 import React from 'react';
-import { Button, Icon } from 'semantic-ui-react';
+import {
+  Table, Header, Button, Icon,
+} from 'semantic-ui-react';
 
-const CurrencyWidget = ({ onUnsubscribe }) => (
-  <div>
-    <h3>
-      Currency
-      {' '}
-      <Button onClick={onUnsubscribe} style={{ float: 'right' }} size="tiny">
-        <Icon name="close" />
-        Unsubscribe
-      </Button>
-    </h3>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eu ligula ex. Praesent
-      volutpat scelerisque euismod. In nec augue at risus aliquam pharetra. Pellentesque accumsan
-      porta leo, at dapibus sapien rutrum in. Aliquam erat volutpat. Ut suscipit augue ac metus
-      interdum bibendum. Pellentesque nec consectetur lectus. Aliquam scelerisque turpis magna, sed
-      semper nulla euismod eget. Maecenas in posuere leo, quis dictum nulla. Suspendisse tincidunt
-      ipsum vitae venenatis aliquam. Aliquam erat volutpat. Phasellus iaculis hendrerit est, nec
-      venenatis leo rutrum vel.
-    </p>
-  </div>
-);
+// eslint-disable-next-line react/prefer-stateless-function
+class CurrencyWidget extends React.Component {
+  render() {
+    const { onUnsubscribe } = this.props;
+    return (
+      <div>
+        <h3>
+          News
+          {' '}
+          <Button onClick={onUnsubscribe} style={{ float: 'right' }} size="tiny">
+            <Icon name="close" />
+            Unsubscribe
+          </Button>
+        </h3>
+        <Table basic="very">
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Currency</Table.HeaderCell>
+              <Table.HeaderCell>Value</Table.HeaderCell>
+              <Table.HeaderCell>Change</Table.HeaderCell>
+              <Table.HeaderCell>Net Change</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell>
+                <Header as="h4" image>
+                  EUR-USD
+                </Header>
+              </Table.Cell>
+              <Table.Cell>1.1326</Table.Cell>
+              <Table.Cell>
+                <p style={{ color: 'green' }}>0.0022</p>
+              </Table.Cell>
+              <Table.Cell>
+                <p style={{ color: 'green' }}>+0.19%</p>
+              </Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Cell>
+                <Header as="h4" image>
+                  USD-JPY
+                </Header>
+              </Table.Cell>
+              <Table.Cell>111.4800</Table.Cell>
+              <Table.Cell>
+                <p style={{ color: 'red' }}>-0.0022</p>
+              </Table.Cell>
+              <Table.Cell>
+                <p style={{ color: 'red' }}>-0.19%</p>
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table>
+      </div>
+    );
+  }
+}
 
 export default CurrencyWidget;
