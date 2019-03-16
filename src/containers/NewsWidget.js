@@ -19,7 +19,15 @@ const Article = ({ article }) => (
     <Item.Content>
       <Item.Header as="a">{article.title}</Item.Header>
       <Item.Meta>{article.description}</Item.Meta>
-      <Item.Extra>{`${article.author} |  ${article.publishedAt.split('T')[0]}`}</Item.Extra>
+      <Item.Extra>
+        {article.author && (
+        <span>
+          {article.author}
+          {' '}
+        </span>
+        )}
+        <span>{article.publishedAt.split('T')[0]}</span>
+      </Item.Extra>
     </Item.Content>
   </Item>
 );
