@@ -2,7 +2,14 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, Icon } from 'semantic-ui-react';
 import { stocksStore } from '../stores';
-import { StockDisplay } from '../components';
+import { DataTable } from '../components';
+
+const TABLE_HEADERS = {
+  PRICE: 'Price',
+  SYMBOL: 'Symbol',
+  CHANGE: 'Change',
+  NET_CHANGE: 'Net Change',
+};
 
 @observer
 class StocksWidget extends React.Component {
@@ -19,10 +26,16 @@ class StocksWidget extends React.Component {
           </Button>
         </h3>
         <div>
-          <StockDisplay
-            symbol={stocksStore.stocks['Global Quote']['01. symbol']}
-            price={stocksStore.stocks['Global Quote']['05. price']}
-            percentChange={stocksStore.stocks['Global Quote']['10. change percent']}
+          <DataTable
+            headers={['Symbol', 'Price', 'Change', 'Net Change']}
+            data={[
+              {
+                [TABLE_HEADERS.SYMBOL]: stocksStore.stocks['Global Quote']['01. symbol'],
+                [TABLE_HEADERS.PRICE]: stocksStore.stocks['Global Quote']['05. price'],
+                [TABLE_HEADERS.CHANGE]: stocksStore.stocks['Global Quote']['10. change percent'],
+                [TABLE_HEADERS.NET_CHANGE]: 0.2,
+              },
+            ]}
           />
           {stocksStore.stocks.timestamp && (
             <div style={{ margin: '1em', marginBottom: '2em' }}>

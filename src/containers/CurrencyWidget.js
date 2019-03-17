@@ -1,7 +1,13 @@
 import React from 'react';
-import {
-  Table, Header, Button, Icon,
-} from 'semantic-ui-react';
+import { Button, Icon } from 'semantic-ui-react';
+import { DataTable } from '../components';
+
+const TABLE_HEADERS = {
+  PRICE: 'Price',
+  CURRENCY: 'Currency',
+  CHANGE: 'Change',
+  NET_CHANGE: 'Net Change',
+};
 
 // eslint-disable-next-line react/prefer-stateless-function
 class CurrencyWidget extends React.Component {
@@ -17,47 +23,17 @@ class CurrencyWidget extends React.Component {
             Unsubscribe
           </Button>
         </h3>
-        <Table basic="very">
-          <Table.Header>
-            <Table.Row>
-              <Table.HeaderCell>Currency</Table.HeaderCell>
-              <Table.HeaderCell>Value</Table.HeaderCell>
-              <Table.HeaderCell>Change</Table.HeaderCell>
-              <Table.HeaderCell>Net Change</Table.HeaderCell>
-            </Table.Row>
-          </Table.Header>
-
-          <Table.Body>
-            <Table.Row>
-              <Table.Cell>
-                <Header as="h4" image>
-                  EUR-USD
-                </Header>
-              </Table.Cell>
-              <Table.Cell>1.1326</Table.Cell>
-              <Table.Cell>
-                <p style={{ color: 'green' }}>0.0022</p>
-              </Table.Cell>
-              <Table.Cell>
-                <p style={{ color: 'green' }}>+0.19%</p>
-              </Table.Cell>
-            </Table.Row>
-            <Table.Row>
-              <Table.Cell>
-                <Header as="h4" image>
-                  USD-JPY
-                </Header>
-              </Table.Cell>
-              <Table.Cell>111.4800</Table.Cell>
-              <Table.Cell>
-                <p style={{ color: 'red' }}>-0.0022</p>
-              </Table.Cell>
-              <Table.Cell>
-                <p style={{ color: 'red' }}>-0.19%</p>
-              </Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        </Table>
+        <DataTable
+          headers={['Currency', 'Price', 'Change', 'Net Change']}
+          data={[
+            {
+              [TABLE_HEADERS.CURRENCY]: 'EUR-USD',
+              [TABLE_HEADERS.PRICE]: 1.1326,
+              [TABLE_HEADERS.CHANGE]: '0.0022',
+              [TABLE_HEADERS.NET_CHANGE]: '+0.19%',
+            },
+          ]}
+        />
       </div>
     );
   }

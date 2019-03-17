@@ -1,8 +1,8 @@
 import FluidSegment from './FluidSegment';
 import NavBar from './NavBar';
 import PrivateRoute from './PrivateRoute';
-import StockDisplay from './StockDisplay';
+import DataTable from './DataTable';
 
 export {
-  FluidSegment, NavBar, PrivateRoute, StockDisplay,
+  FluidSegment, NavBar, PrivateRoute, DataTable,
 };
