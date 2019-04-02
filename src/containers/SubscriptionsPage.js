@@ -25,7 +25,7 @@ class SubscriptionsPage extends Component {
           <span style={{ color: '#00b5ad' }}>{userStore.user.email}</span>
           <span>! Manage your subscriptions!</span>
         </h3>
-        <h4>You subscriptions: </h4>
+        <h4>Your subscriptions: </h4>
         {subscribedAvaliableServices.length === 0 && <p>You are not subscribed to any services</p>}
         <ul>
           {subscribedAvaliableServices.map(service => (
