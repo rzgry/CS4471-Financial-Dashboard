@@ -1,16 +1,16 @@
 import {
   toJS, observable, action, computed,
 } from 'mobx';
-import firebase, { db } from '../helpers/firebase';
+import { db, auth } from '../helpers/firebase';
 
 export default class UserStore {
   constructor() {
-    firebase.auth().onAuthStateChanged((user) => {
+    auth.onAuthStateChanged((user) => {
       if (user) {
         db.collection('users')
           .doc(user.uid)
           .onSnapshot((doc) => {
-            if (doc.data().uid === firebase.auth().currentUser.uid) {
+            if (doc.data().uid === auth.currentUser.uid) {
               this.user = doc.data();
             }
             this.authFinishedLoading = true;
@@ -56,8 +56,7 @@ export default class UserStore {
   }
 
   @action signup(email, password) {
-    firebase
-      .auth()
+    auth
       .createUserWithEmailAndPassword(email, password)
       .then((result) => {
         const { user } = result;
@@ -76,33 +75,25 @@ export default class UserStore {
           .set(userDoc);
       })
       .catch((error) => {
-        // Handle Errors here.
-        console.error(error);
+        console.error(error); // eslint-disable-line no-console
         const errorMessage = error.message;
         this.error = errorMessage;
       });
   }
 
   @action login(email, password) {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch((error) => {
-        // Handle Errors here.
-        console.error(error);
-        const errorMessage = error.message;
-        this.error = errorMessage;
-      });
+    auth.signInWithEmailAndPassword(email, password).catch((error) => {
+      console.error(error); // eslint-disable-line no-console
+      const errorMessage = error.message;
+      this.error = errorMessage;
+    });
   }
 
   @action logout() {
-    firebase
-      .auth()
-      .signOut()
-      .catch((error) => {
-        console.error(error);
-        const errorMessage = error.message;
-        this.error = errorMessage;
-      });
+    auth.signOut().catch((error) => {
+      console.error(error); // eslint-disable-line no-console
+      const errorMessage = error.message;
+      this.error = errorMessage;
+    });
   }
 }
