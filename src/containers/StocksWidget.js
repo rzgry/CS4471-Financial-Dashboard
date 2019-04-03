@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { Button, Icon } from 'semantic-ui-react';
 import { stocksStore } from '../stores';
-import { DataTable } from '../components';
+import { DataTable, LastUpdated } from '../components';
 
 const TABLE_HEADERS = {
   PRICE: 'Price',
@@ -37,13 +37,7 @@ class StocksWidget extends React.Component {
               },
             ]}
           />
-          {stocksStore.stocks.timestamp && (
-            <div style={{ margin: '1em', marginBottom: '2em' }}>
-              <p style={{ float: 'right', color: 'gray' }}>
-                {`Last updated: ${new Date(stocksStore.stocks.timestamp).toLocaleString()}`}
-              </p>
-            </div>
-          )}
+          <LastUpdated timestamp={stocksStore.stocks.timestamp} />
         </div>
       </div>
     );

@@ -16,11 +16,6 @@ import CurrencyWidget from './CurrencyWidget';
 
 @observer
 class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    newsStore.fetchNews();
-  }
-
   render() {
     if (!userStore.isAuthenticated) {
       return (

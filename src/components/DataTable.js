@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  Table, Header, Button, Icon,
-} from 'semantic-ui-react';
+import { Table } from 'semantic-ui-react';
 
 const DataTable = ({ headers, data }) => (
   <Table basic="very">

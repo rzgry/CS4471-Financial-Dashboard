@@ -16,7 +16,7 @@ class CurrencyWidget extends React.Component {
     return (
       <div>
         <h3>
-          News
+          Currency
           {' '}
           <Button onClick={onUnsubscribe} style={{ float: 'right' }} size="tiny">
             <Icon name="close" />
