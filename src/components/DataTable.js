@@ -6,7 +6,7 @@ const DataTable = ({ headers, data }) => (
     <Table.Header>
       <Table.Row>
         {headers.map(header => (
-          <Table.HeaderCell>{header}</Table.HeaderCell>
+          <Table.HeaderCell key={header}>{header}</Table.HeaderCell>
         ))}
       </Table.Row>
     </Table.Header>
@@ -14,7 +14,7 @@ const DataTable = ({ headers, data }) => (
       {data.map(row => (
         <Table.Row>
           {headers.map(header => (
-            <Table.Cell>{row[header]}</Table.Cell>
+            <Table.Cell key={header}>{row[header]}</Table.Cell>
           ))}
         </Table.Row>
       ))}

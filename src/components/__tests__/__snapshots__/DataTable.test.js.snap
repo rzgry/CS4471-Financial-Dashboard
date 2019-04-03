@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DataTable /> renders correctly 1`] = `
+<table
+  className="ui very basic table"
+>
+  <thead
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <th
+        className=""
+      >
+        testA
+      </th>
+      <th
+        className=""
+      >
+        testB
+      </th>
+    </tr>
+  </thead>
+  <tbody
+    className=""
+  >
+    <tr
+      className=""
+    >
+      <td
+        className=""
+      >
+        testA
+      </td>
+      <td
+        className=""
+      >
+        testB
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

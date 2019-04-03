@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LastUpdated /> renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "margin": "1em",
+      "marginBottom": "2em",
+    }
+  }
+>
+  <p
+    style={
+      Object {
+        "color": "gray",
+        "float": "right",
+      }
+    }
+  >
+    Last updated: 2019-04-03, 6:09:21 p.m.
+  </p>
+</div>
+`;
