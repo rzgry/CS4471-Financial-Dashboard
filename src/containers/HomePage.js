@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
 import { Link } from 'react-router-dom';
-import { Grid, Button, Icon } from 'semantic-ui-react';
-import { userStore, newsStore, subscriptionStore } from '../stores';
+import { Grid } from 'semantic-ui-react';
+import { userStore, subscriptionStore } from '../stores';
 import { FluidSegment } from '../components';
 import {
   SUBSCRIPTION_STOCKS,
@@ -39,11 +39,11 @@ class HomePage extends Component {
           <span>! Welcome back to your dashboard!</span>
         </h3>
         <Grid stackable>
-          {userStore.user.subscriptions[SUBSCRIPTION_NEWS]
-            && subscriptionStore.services[SUBSCRIPTION_NEWS] && (
+          {userStore.user.subscriptions[SUBSCRIPTION_STOCKS]
+            && subscriptionStore.services[SUBSCRIPTION_STOCKS] && (
               <Grid.Column width={8}>
                 <FluidSegment>
-                  <NewsWidget onUnsubscribe={() => userStore.unsubscribe(SUBSCRIPTION_NEWS)} />
+                  <StocksWidget onUnsubscribe={() => userStore.unsubscribe(SUBSCRIPTION_STOCKS)} />
                 </FluidSegment>
               </Grid.Column>
           )}
@@ -57,11 +57,11 @@ class HomePage extends Component {
                 </FluidSegment>
               </Grid.Column>
           )}
-          {userStore.user.subscriptions[SUBSCRIPTION_STOCKS]
-            && subscriptionStore.services[SUBSCRIPTION_STOCKS] && (
+          {userStore.user.subscriptions[SUBSCRIPTION_NEWS]
+            && subscriptionStore.services[SUBSCRIPTION_NEWS] && (
               <Grid.Column width={8}>
                 <FluidSegment>
-                  <StocksWidget onUnsubscribe={() => userStore.unsubscribe(SUBSCRIPTION_STOCKS)} />
+                  <NewsWidget onUnsubscribe={() => userStore.unsubscribe(SUBSCRIPTION_NEWS)} />
                 </FluidSegment>
               </Grid.Column>
           )}

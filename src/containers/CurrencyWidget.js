@@ -1,12 +1,10 @@
 import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
-import { DataTable } from '../components';
+import { DataTable, LastUpdated } from '../components';
 
 const TABLE_HEADERS = {
-  PRICE: 'Price',
   CURRENCY: 'Currency',
-  CHANGE: 'Change',
-  NET_CHANGE: 'Net Change',
+  PRICE: 'Price',
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -24,16 +22,15 @@ class CurrencyWidget extends React.Component {
           </Button>
         </h3>
         <DataTable
-          headers={['Currency', 'Price', 'Change', 'Net Change']}
+          headers={Object.values(TABLE_HEADERS)}
           data={[
             {
               [TABLE_HEADERS.CURRENCY]: 'EUR-USD',
               [TABLE_HEADERS.PRICE]: 1.1326,
-              [TABLE_HEADERS.CHANGE]: '0.0022',
-              [TABLE_HEADERS.NET_CHANGE]: '+0.19%',
             },
           ]}
         />
+        <LastUpdated timestamp={1} />
       </div>
     );
   }
