@@ -11,6 +11,7 @@ export default class NewsStore {
         this.rates = data.rates;
         this.base = data.base;
       });
+      
   }
 
   @observable showMore = false;
