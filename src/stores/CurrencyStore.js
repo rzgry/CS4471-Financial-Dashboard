@@ -1,4 +1,4 @@
-import { observable } from 'mobx';
+import { observable, computed } from 'mobx';
 import { db } from '../helpers/firebase';
 
 export default class NewsStore {
@@ -13,6 +13,8 @@ export default class NewsStore {
       });
   }
 
+  @observable showMore = false;
+
   @observable base = undefined;
 
   @observable rates = [];
@@ -20,4 +22,11 @@ export default class NewsStore {
   @observable error = '';
 
   @observable timestamp;
+
+  @computed get visableRates() {
+    if (!this.showMore) {
+      return Object.entries(this.rates).slice(0, 4);
+    }
+    return Object.entries(this.rates);
+  }
 }

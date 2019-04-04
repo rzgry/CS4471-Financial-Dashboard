@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
+import { observer } from 'mobx-react';
 import { DataTable, LastUpdated } from '../components';
 import { currencyStore } from '../stores';
 
@@ -9,7 +10,12 @@ const TABLE_HEADERS = {
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
+@observer
 class CurrencyWidget extends React.Component {
+  toggleShowMore = () => {
+    currencyStore.showMore = !currencyStore.showMore;
+  };
+
   render() {
     const { onUnsubscribe } = this.props;
     return (
@@ -24,12 +30,17 @@ class CurrencyWidget extends React.Component {
         </h3>
         <DataTable
           headers={Object.values(TABLE_HEADERS)}
-          data={Object.entries(currencyStore.rates).map(([name, rate]) => ({
+          data={currencyStore.visableRates.map(([name, rate]) => ({
             [TABLE_HEADERS.CURRENCY]: `${currencyStore.base}-${name}`,
             [TABLE_HEADERS.PRICE]: rate,
           }))}
         />
         <LastUpdated timestamp={currencyStore.timestamp} />
+        <br />
+        <Button onClick={this.toggleShowMore} fluid>
+          <Icon name={currencyStore.showMore ? 'caret up' : 'caret down'} />
+          {currencyStore.showMore ? 'Show less' : 'Show More'}
+        </Button>
       </div>
     );
   }
