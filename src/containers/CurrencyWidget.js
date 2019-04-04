@@ -29,7 +29,7 @@ class CurrencyWidget extends React.Component {
             [TABLE_HEADERS.PRICE]: rate,
           }))}
         />
-        <LastUpdated timestamp={1} />
+        <LastUpdated timestamp={currencyStore.timestamp} />
       </div>
     );
   }
