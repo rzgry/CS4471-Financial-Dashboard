@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Icon } from 'semantic-ui-react';
 import { DataTable, LastUpdated } from '../components';
+import { currencyStore } from '../stores';
 
 const TABLE_HEADERS = {
   CURRENCY: 'Currency',
@@ -23,12 +24,10 @@ class CurrencyWidget extends React.Component {
         </h3>
         <DataTable
           headers={Object.values(TABLE_HEADERS)}
-          data={[
-            {
-              [TABLE_HEADERS.CURRENCY]: 'EUR-USD',
-              [TABLE_HEADERS.PRICE]: 1.1326,
-            },
-          ]}
+          data={Object.entries(currencyStore.rates).map(([name, rate]) => ({
+            [TABLE_HEADERS.CURRENCY]: `${currencyStore.base}-${name}`,
+            [TABLE_HEADERS.PRICE]: rate,
+          }))}
         />
         <LastUpdated timestamp={1} />
       </div>
