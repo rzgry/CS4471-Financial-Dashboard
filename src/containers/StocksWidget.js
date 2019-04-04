@@ -28,16 +28,16 @@ class StocksWidget extends React.Component {
         <div>
           <DataTable
             headers={['Symbol', 'Price', 'Change', 'Net Change']}
-            data={[
-              {
-                [TABLE_HEADERS.SYMBOL]: stocksStore.stocks['Global Quote']['01. symbol'],
-                [TABLE_HEADERS.PRICE]: stocksStore.stocks['Global Quote']['05. price'],
-                [TABLE_HEADERS.CHANGE]: stocksStore.stocks['Global Quote']['10. change percent'],
-                [TABLE_HEADERS.NET_CHANGE]: 0.2,
+            data={stocksStore.stocks.map(
+              stock => stock['Global Quote'] && {
+                [TABLE_HEADERS.SYMBOL]: stock['Global Quote']['01. symbol'],
+                [TABLE_HEADERS.PRICE]: stock['Global Quote']['05. price'],
+                [TABLE_HEADERS.CHANGE]: stock['Global Quote']['10. change percent'],
+                [TABLE_HEADERS.NET_CHANGE]: stock['Global Quote']['09. change'],
               },
-            ]}
+            )}
           />
-          <LastUpdated timestamp={stocksStore.stocks.timestamp} />
+          <LastUpdated timestamp={stocksStore.timestamp} />
         </div>
       </div>
     );
